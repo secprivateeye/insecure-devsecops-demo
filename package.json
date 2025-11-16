@@ -1,0 +1,14 @@
+{
+  "name": "insecure-devsecops-demo",
+  "version": "1.0.0",
+  "description": "Intentionally vulnerable app for DevSecOps + Azure/MSDO demo",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "express": "4.17.1",
+    "lodash": "4.17.10",
+    "mysql": "2.18.1"
+  }
+}
