@@ -1,0 +1,49 @@
+name: MSDO
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  msdo-security-scan:
+    name: Microsoft Security DevOps
+
+    # Windows and Linux are supported; use Linux for speed/cost
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+      actions: read
+      # Needed if you want results to show in GitHub code scanning (GHAS)
+      security-events: write
+
+    steps:
+      # Checkout repo
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Optional: set up Node and run npm install so SCA has full context
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+
+      # Run Microsoft Security DevOps analyzers
+      - name: Run Microsoft Security DevOps
+        id: msdo
+        uses: microsoft/security-devops-action@latest
+
+      # OPTIONAL: upload SARIF to GitHub code scanning (if you have GHAS)
+      # - name: Upload alerts file as a workflow artifact
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: alerts
+      #     path: ${{ steps.msdo.outputs.sarifFile }}
