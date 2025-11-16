@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DevSecOps AI Demo App</title>
+  </head>
+  <body>
+    <h1>Insecure DevSecOps Demo</h1>
+    <p>This app is intentionally vulnerable for security scanning demos.</p>
+
+    <ul>
+      <li><a href="/user?username=admin">SQL Injection demo (/user)</a></li>
+      <li><a href="/search?q=<script>alert('xss')</script>">Reflected XSS demo (/search)</a></li>
+      <li><a href="/ping?host=google.com">Command Injection demo (/ping)</a></li>
+      <li><a href="/admin">Open admin endpoint (/admin)</a></li>
+      <li><a href="/debug-config">Config leak (/debug-config)</a></li>
+    </ul>
+
+    <p><strong>Warning:</strong> Do NOT deploy this app to production. Lab/demo use only.</p>
+  </body>
+</html>
